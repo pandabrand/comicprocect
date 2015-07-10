@@ -16,4 +16,9 @@ describe 'Comic App' do
     expect(last_response).to be_ok
     expect(last_response.body).to eq('Test')
   end
+  
+  it "get the first page url" do
+    get '/fred'
+    expect(last_response.location).to eq('http://example.org/fred/1')
+  end
 end
