@@ -3,6 +3,9 @@
 require 'sinatra/base'
 
 class ComicApp < Sinatra::Base
+  set :static, true
+  set :public, File.dirname(__FILE__) + '/static'
+  
   get '/' do
     "Hello World"
   end
@@ -16,7 +19,7 @@ class ComicApp < Sinatra::Base
     redirect "/" + author + "/1"
   end
   
-  get '/:author/:page' do
+  get ':author/:page' do
     author = params['author']
     author
   end
