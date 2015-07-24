@@ -1,36 +1,28 @@
 #comic_app.rb
 
 require 'sinatra/base'
+require_relative 'routes/init'
 
 class ComicApp < Sinatra::Base
-  set :static, true
-  set :public_dir, File.dirname(__FILE__) + '/static'
-  if !Dir.exist?(File.join(settings.public_dir, 'authors'))
-    Dir.mkdir(File.join(settings.public_dir, 'authors'))
+  configure do
+    set :app_file, __FILE__
+    set :public_dir, File.dirname(__FILE__) + '/static'
+    if !Dir.exist?(File.join(settings.public_dir, 'authors'))
+      Dir.mkdir(File.join(settings.public_dir, 'authors'))
+    end
+    set :authors, Proc.new { Dir.entries(File.join(settings.public_dir, 'authors')).select {|entry| File.directory? File.join(settings.public_dir, 'authors',entry) and !(entry =='.' || entry == '..') } }
   end
-  set :authors, Proc.new { Dir.entries(File.join(settings.public_dir, 'authors')).select {|entry| File.directory? File.join(settings.public_dir, 'authors',entry) and !(entry =='.' || entry == '..') } }
 
+  configure :developement do
+    enable :logging, :dump_errors, :raise_errors
+  end
+
+  configure :production do
+    set :raise_errors, false
+    set :show_exceptions, false
+  end
   def author_name(index)
     name_array = settings.authors[index].split('_')
     return name_array[1].capitalize + ' ' + name_array[0].capitalize
-  end
-
-  get '/' do
-    "John Biggers"
-  end
-
-  get '/hi' do
-    "Test"
-  end
-
-  get '/:author' do
-    author = params['author']
-    redirect "/" + author + "/1"
-  end
-
-  get '/:author/:page' do
-    @author = params['author']
-    @page = params['page']
-    @author + ' page ' + @page
   end
 end
