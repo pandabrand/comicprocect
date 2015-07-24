@@ -18,4 +18,7 @@ class ComicApp < Sinatra::Base
     @author + ' page ' + @page
   end
 
+  not_found do
+    erb :error_page
+  end
 end
