@@ -18,49 +18,45 @@ describe 'Comic App' do
     expect(last_response.body).to eq('Test')
   end
 
-  it "get the first page url" do
-    get '/fred'
-    expect(last_response.location).to eq('http://example.org/fred/1')
-  end
-
-  it "contains first author" do
-    get '/'
-    expect(last_response.body).to include('Comic Book Accountability Project')
-  end
-
   it 'should have authors directory' do
-    expect(Dir.entries(app.settings.public_dir)).to include('authors')
+    expect(Dir.entries(app.settings.root)).to include('authors')
   end
 
   describe 'author dir test' do
     before(:all) do
-      Dir.mkdir(File.join(app.settings.public_dir, 'authors','biggers_john'))
-      Dir.mkdir(File.join(app.settings.public_dir, 'authors','nemerovski_bathsheba'))
-      testfile = File.open(File.join(app.settings.public_dir, 'authors' ,'testfile.txt'), 'w')
+      Dir.mkdir(File.join('authors','biggers_john'))
+      Dir.mkdir(File.join('authors','nemerovski_bathsheba'))
+      Dir.mkdir(File.join('authors', 'joyce_sarah-wells_frederick'))
+      testfile = File.open(File.join('authors' ,'testfile.txt'), 'w')
       testfile.close
       # app.set :authors, Proc.new { app.author_dir_load }
     end
 
     after(:all) do
-      Dir.delete(File.join(app.settings.public_dir, 'authors','nemerovski_bathsheba'))
-      Dir.delete(File.join(app.settings.public_dir, 'authors','biggers_john'))
-      File.delete(File.join(app.settings.public_dir, 'authors' ,'testfile.txt'))
+      Dir.delete(File.join('authors','nemerovski_bathsheba'))
+      Dir.delete(File.join('authors','biggers_john'))
+      Dir.delete(File.join('authors', 'joyce_sarah-wells_frederick'))
+      File.delete(File.join('authors' ,'testfile.txt'))
+    end
+
+    it "should not be empty" do
+      expect(app.settings.authors).not_to be_empty
     end
 
     it ":author_dir_load" do
-      expect(app.settings.authors).to include('biggers_john')
-    end
-
-    it ":author_dir_load ordered" do
-      expect(app.settings.authors.first).to eq('biggers_john')
+      expect(app.settings.authors.grep(/joyce_sarah/)).to_not be_empty
     end
 
     it ":author_dir_load no files" do
       expect(app.settings.authors).not_to include('testfile.txt')
     end
 
-    it ":author_name" do
-      expect(app.author_name(1)).to eq('Bathsheba Nemerovski')
+    it "has an author Hash" do
+      expect(app.settings.author_list.has_key?("Sarah Joyce")).to be true
+    end
+
+    it "returns full author name as value" do
+      expect(app.settings.author_list["Sarah Joyce"]).to eq("joyce_sarah-wells_frederick")
     end
   end
 
