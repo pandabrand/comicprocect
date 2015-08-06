@@ -9,3 +9,7 @@ end
 map "/img" do
   run Rack::Directory.new("./static/img")
 end
+
+map "/authors" do
+  run Rack::Directory.new("./authors")
+end

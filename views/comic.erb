@@ -1,3 +1,11 @@
 <div id="container">
-  Hello
+  Hello <%= @images.join %><br>
+  <%= @author_info.join(" ") %>
+</div>
+<div id="links">
+  <% @images.each do |image| %>
+    <a href="authors/<%= @author %>/<%= image %>" title="<%= @author_info[1] %>" data-gallery>
+        <img src="authors/<%= @author %>/<%= image %>" alt="">
+    </a>
+  <% end %>
 </div>

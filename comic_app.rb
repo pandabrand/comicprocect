@@ -44,4 +44,11 @@ class ComicApp < Sinatra::Base
     return name_array.join(" ")
   end
 
+  def author_keys
+    akeys = settings.author_list.keys.sort_by do |name|
+      name.split(" ").reverse.join(",")
+    end
+    akeys
+  end
+
 end
