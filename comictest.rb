@@ -35,7 +35,7 @@ describe 'Comic App' do
     after(:all) do
       Dir.delete(File.join('authors','nemerovski_bathsheba'))
       Dir.delete(File.join('authors','biggers_john'))
-      Dir.delete(File.join('authors', 'joyce_sarah-wells_frederick'))
+      Dir.delete(File.join('authors', 'joyce_sarah-wells_neil'))
       File.delete(File.join('authors' ,'testfile.txt'))
     end
 
@@ -56,7 +56,7 @@ describe 'Comic App' do
     end
 
     it "returns full author name as value" do
-      expect(app.settings.author_list["Sarah Joyce"]).to eq("joyce_sarah-wells_frederick")
+      expect(app.settings.author_list["Sarah Joyce"]).to eq("joyce_sarah-wells_neil")
     end
   end
 

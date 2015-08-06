@@ -39,7 +39,9 @@ class ComicApp < Sinatra::Base
 
   def self.author_name(name)
     name_array = name.split('_')
-    return name_array[1].capitalize + ' ' + name_array[0].capitalize
+    name_array.reverse!
+    name_array.select { |e| e.capitalize! }
+    return name_array.join(" ")
   end
 
 end
