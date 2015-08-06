@@ -2,10 +2,16 @@
     <div class="row">
       <div class="col-md-6">
         <ul class="list-unstyled author">
+          <% @author_keys.first(22).each do |key| %>
+            <li><a href="/<%= settings.author_list[key] %>"><%= key %></a></li>
+          <% end %>
         </ul>
       </div>
       <div class="ccol-md-6">
         <ul class="list-unstyled author">
+          <% @author_keys.last(22).each do |key| %>
+          <li><a href="/<%= settings.author_list[key] %>"><%= key %></a></li>
+          <% end %>
         </ul>
       </div>
     </div>

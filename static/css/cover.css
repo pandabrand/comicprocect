@@ -92,3 +92,8 @@ footer {
   width: 100%;
   height: 60px;
 }
+
+li a {
+  text-decoration: none;
+  color: #FFF;
+}

@@ -26,7 +26,7 @@ describe 'Comic App' do
     before(:all) do
       Dir.mkdir(File.join('authors','biggers_john'))
       Dir.mkdir(File.join('authors','nemerovski_bathsheba'))
-      Dir.mkdir(File.join('authors', 'joyce_sarah-wells_frederick'))
+      Dir.mkdir(File.join('authors', 'joyce_sarah-wells_neil'))
       testfile = File.open(File.join('authors' ,'testfile.txt'), 'w')
       testfile.close
       # app.set :authors, Proc.new { app.author_dir_load }
