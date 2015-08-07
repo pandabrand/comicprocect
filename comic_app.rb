@@ -1,7 +1,7 @@
 #comic_app.rb
 
 require 'sinatra/base'
-require_relative 'routes/init'
+require 'routes/init'
 
 class ComicApp < Sinatra::Base
 
@@ -9,9 +9,6 @@ class ComicApp < Sinatra::Base
     set :root,File.dirname(__FILE__)
     set :app_file, __FILE__
     set :public_dir, File.dirname(__FILE__) + '/static'
-    if !Dir.exist?('authors')
-      Dir.mkdir('authors')
-    end
     set :authors, Proc.new { Dir.entries(File.join('authors')).select {|entry| File.directory? File.join('authors',entry) and !(entry =='.' || entry == '..') } }
     set :author_list, Proc.new {
       al = Hash.new

@@ -1,1 +1,1 @@
-require_relative 'comic_routes'
+require File.join(File.dirname(__FILE__), 'comic_routes')
