@@ -10,8 +10,8 @@
         <title>Accountability Comic Book</title>
         <!-- Latest compiled and minified CSS -->
         <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.5/css/bootstrap.min.css">
-        <link rel="stylesheet" href="//blueimp.github.io/Gallery/css/blueimp-gallery.min.css">
         <link rel="stylesheet" href="css/bootstrap-image-gallery.min.css">
+        <link rel="stylesheet" href="css/blueimp-gallery.min.css">
         <!-- Optional theme -->
         <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.5/css/bootstrap-theme.min.css">
         <link href='http://fonts.googleapis.com/css?family=Oswald:700' rel='stylesheet' type='text/css'>
@@ -36,5 +36,16 @@
         <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.3/jquery.min.js"></script>
         <!-- Latest compiled and minified JavaScript -->
         <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.5/js/bootstrap.min.js"></script>
+        <script src="js/blueimp-gallery.min.js"></script>
+        <script>
+          document.getElementById('links').onclick = function (event) {
+              event = event || window.event;
+              var target = event.target || event.srcElement,
+                  link = target.src ? target.parentNode : target,
+                  options = {index: link, event: event},
+                  links = this.getElementsByTagName('a');
+              blueimp.Gallery(links, options);
+          };
+        </script>
     </body>
 </html>

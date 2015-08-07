@@ -13,3 +13,7 @@ end
 map "/authors" do
   run Rack::Directory.new("./authors")
 end
+
+map "/js" do
+  run Rack::Directory.new("./static/js")
+end

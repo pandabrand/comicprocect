@@ -9,7 +9,7 @@ class ComicApp < Sinatra::Base
     if(@authors.empty?)
       erb :error_page
     else
-      @images = Dir.entries(File.join('authors', @author)).select {|entry| File.file? File.join('authors',@author,entry) and !(entry =='.' || entry == '..'||entry == 'author.txt') }
+      @images = Dir.entries(File.join('authors', @author)).select {|entry| File.file? File.join('authors',@author,entry) and !(entry =='.' || entry == '..'|| entry == 'author.txt' || entry =~ /_thumb/) }
       @author_info = Array.new
       IO.foreach(File.join('authors', @author, 'author.txt')){|line| @author_info.push(line)}
       erb :comic

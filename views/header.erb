@@ -14,7 +14,7 @@
       <li><a href="/">Home</a></li>
       <li>
           <a class="dropdown-toggle" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false" href="#">Authors</a>
-          <ul class="dropdown-menu">
+          <ul id="menu-drop" class="dropdown-menu">
             <% author_keys.each do |key| %>
               <li><a href="/<%= settings.author_list[key] %>"><%= key %></a></li>
             <% end %>

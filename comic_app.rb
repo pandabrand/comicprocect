@@ -51,4 +51,8 @@ class ComicApp < Sinatra::Base
     akeys
   end
 
+  def thumbnail(image)
+    imagename = image.split(".")
+    return imagename[0] + '_thumb.' + imagename[1]
+  end
 end

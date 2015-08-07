@@ -97,3 +97,22 @@ li a {
   text-decoration: none;
   color: #FFF;
 }
+
+.panel-body {
+  color: #333 !important;
+}
+
+.comic-cell {
+  padding-top: 15px;
+}
+
+#links img {
+  padding: 10px;
+  height: 300px;
+}
+
+#menu-drop {
+    max-height: 400px;
+    overflow: hidden;
+    overflow-y: auto;
+}
